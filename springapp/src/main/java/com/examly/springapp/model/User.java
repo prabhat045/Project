@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"username"}),
+    @UniqueConstraint(columnNames = {"email"}),
+    @UniqueConstraint(columnNames = {"mobileNumber"})
+})
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
