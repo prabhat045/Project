@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -14,22 +15,22 @@ public class User {
     private Long id;
 
     @Column(name="email")
-    private String email;
+    private @NotBlank String email;
 
     @Column(name="password")
-    private String password;
+    private @NotBlank String password;
 
     @Column(name="username")
-    private String username;
+    private @NotBlank String username;
 
     @Column(name="mobileNumber")
-    private String mobileNumber;
+    private @NotBlank String mobileNumber;
 
     @Column(name="active")
-    private boolean active;
+    private @NotBlank boolean active;
 
     @Column(name="role")
-    private String role;
+    private @NotBlank String role;
 
     User(){}
     User(String email,String password,String username,String mobileNumber,boolean active,String role){
@@ -93,5 +94,14 @@ public class User {
 
     public Long getId(){
         return this.id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password);
     }
 }
