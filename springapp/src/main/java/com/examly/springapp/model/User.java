@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.util.Objects;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -102,6 +102,6 @@ public class User {
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) ||
-        Objects.equals(email, user.email) || Objects.equals(mobileNumber,user.mobileNumber);
+                Objects.equals(email, user.email) || Objects.equals(mobileNumber,user.mobileNumber);
     }
 }
