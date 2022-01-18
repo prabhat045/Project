@@ -12,7 +12,7 @@ import com.examly.springapp.model.User;
 public class Signup {
     @Autowired
     private UserRepository userRepository;
-    @RequestMapping(value="/signup",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE,produces=MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/signup",method=RequestMethod.POST,consumes="application/json",produces="application/json")
     public ResponseEntity<User> createUser(@RequestBody User user){
         return new ResponseEntity<>(userRepository.save(user),HttpStatus.OK);
     }
