@@ -101,7 +101,7 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) ||
-                Objects.equals(email, user.email) || Objects.equals(mobileNumber,user.mobileNumber);
+        return Objects.equals(username, user.getUsername()) ||
+                Objects.equals(email, user.getEmail()) || Objects.equals(mobileNumber,user.getMobileNumber());
     }
 }
