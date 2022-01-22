@@ -18,9 +18,9 @@ public class Signup {
         for (User x : userRepository.findAll()) {
             if (x.equals(user)) {
                 System.out.println("User Already exists!");
-                return new ResponseEntity<>("User Already exists!",HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(false,HttpStatus.BAD_REQUEST);
             }
         }
-        return new ResponseEntity<>(userRepository.save(user),HttpStatus.OK);
+        return new ResponseEntity<>(true,HttpStatus.OK);
     }
 }
