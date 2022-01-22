@@ -19,10 +19,10 @@ public class Login {
         for (User x : userRepository.findAll()) {
             if ((x.getEmail().equals(user.getEmail())) && (x.getPassword().equals(user.getPassword()))) {
                 System.out.println("Success");
-                return new ResponseEntity<>("Insert session token",HttpStatus.OK);
+                return new ResponseEntity<>("true",HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>("Login failed",HttpStatus.OK);
+        return new ResponseEntity<>("false",HttpStatus.OK);
     }
 
 
