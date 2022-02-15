@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto : update
+  datasource:
+    url : jdbc:mysql://localhost:3306/test
+    username : root
+    password : admin
+  mail:
+    host: smtp.gmail.com
+    username: prabhatupretyfake@gmail.com
+    password: 1234@1234?
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

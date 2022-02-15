@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="email")
@@ -32,14 +32,18 @@ public class User {
     @Column(name="role")
     private String role;
 
+    @Column(name="reset_password_token")
+    private String resetPasswordToken;
+
     User(){}
-    User(String email,String password,String username,String mobileNumber,boolean active,String role){
+    User(String email,String password,String username,String mobileNumber,boolean active,String role,String resetPasswordToken){
         this.email = email;
         this.password = password;
         this.username = username;
         this.active = active;
         this.mobileNumber = mobileNumber;
         this.role = role;
+        this.resetPasswordToken=resetPasswordToken;
     }
     public void setId(Long id){
         this.id = id;
@@ -68,6 +72,8 @@ public class User {
         this.active = active;
     }
 
+    public void setResetPasswordToken(String resetPasswordToken) {this.resetPasswordToken=resetPasswordToken;}
+
     public String getEmail(){
         return this.email;
     }
@@ -95,6 +101,8 @@ public class User {
     public Long getId(){
         return this.id;
     }
+
+    public String getResetPasswordToken() {return this.resetPasswordToken;}
 
     @Override
     public boolean equals(Object o) {
