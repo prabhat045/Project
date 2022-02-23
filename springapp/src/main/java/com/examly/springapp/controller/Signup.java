@@ -1,7 +1,7 @@
-package com.examly.springapp.controller;
+package main.java.com.examly.springapp.controller;
 
-import com.examly.springapp.model.User;
-import com.examly.springapp.service.UserService;
+import main.java.com.examly.springapp.model.User;
+import main.java.com.examly.springapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

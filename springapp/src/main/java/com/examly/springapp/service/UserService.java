@@ -1,8 +1,8 @@
-package com.examly.springapp.service;
+package main.java.com.examly.springapp.service;
 
-import com.examly.springapp.model.LoginModel;
-import com.examly.springapp.model.User;
-import com.examly.springapp.repository.UserRepository;
+import main.java.com.examly.springapp.model.LoginModel;
+import main.java.com.examly.springapp.model.User;
+import main.java.com.examly.springapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

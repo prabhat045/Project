@@ -1,9 +1,9 @@
-package com.examly.springapp.controller;
+package main.java.com.examly.springapp.controller;
 
 
-import com.examly.springapp.model.User;
-import com.examly.springapp.service.UserService;
 import com.examly.springapp.service.Utility;
+import main.java.com.examly.springapp.model.User;
+import main.java.com.examly.springapp.service.UserService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
