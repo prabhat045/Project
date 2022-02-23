@@ -1,4 +1,4 @@
-package com.examly.springapp.service;
+package main.java.com.examly.springapp.service;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

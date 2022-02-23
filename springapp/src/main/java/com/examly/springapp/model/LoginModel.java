@@ -1,10 +1,8 @@
-package com.examly.springapp.model;
+package main.java.com.examly.springapp.model;
 
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
+
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
 import javax.persistence.Id;
 import java.util.Objects;
 

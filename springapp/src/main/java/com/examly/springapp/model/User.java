@@ -1,17 +1,14 @@
-package com.examly.springapp.model;
+package main.java.com.examly.springapp.model;
 
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="email")
@@ -36,7 +33,7 @@ public class User {
     private String resetPasswordToken;
 
     User(){}
-    User(String email,String password,String username,String mobileNumber,boolean active,String role,String resetPasswordToken){
+    public User(String email, String password, String username, String mobileNumber, boolean active, String role, String resetPasswordToken){
         this.email = email;
         this.password = password;
         this.username = username;
@@ -45,6 +42,9 @@ public class User {
         this.role = role;
         this.resetPasswordToken=resetPasswordToken;
     }
+
+
+
     public void setId(Long id){
         this.id = id;
     }
