@@ -30,6 +30,15 @@ public class UserService {
         }
         return false;
     }
+    public boolean doesEmailExists(String email) {
+        for (User x : userRepository.findAll()) {
+            if ((x.getEmail().equals(email))) {
+                System.out.println("User Already exists!");
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean doesUserExists(User user) {
         for (User x : userRepository.findAll()) {
