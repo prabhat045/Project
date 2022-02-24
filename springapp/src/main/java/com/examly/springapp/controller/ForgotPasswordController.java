@@ -8,6 +8,7 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class ForgotPasswordController {
     @Autowired
@@ -24,12 +25,14 @@ public class ForgotPasswordController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/forgot_password")
+
+    @PostMapping("/forgetpassword")
     public String processForgotPassword(HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
-
-        userService.updateResetPasswordToken(token, email);
+        if(!userService.doesEmailExists(email))
+            return "email doesnot exist";
+            userService.updateResetPasswordToken(token, email);
         String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
         sendEmail(email, resetPasswordLink);
 
@@ -37,6 +40,7 @@ public class ForgotPasswordController {
     }
 
     public void sendEmail(String recipientEmail, String link) throws MessagingException, UnsupportedEncodingException {
+
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
