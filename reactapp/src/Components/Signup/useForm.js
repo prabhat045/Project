@@ -1,6 +1,10 @@
+import http from "../../Service/httpService";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+const apiEndpoint = "http://localhost:8080/";
 
 const useForm = (callback, validate) => {
+  let navigate = useNavigate();
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -22,16 +26,29 @@ const useForm = (callback, validate) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors(validate(values));
+    setIsSubmitting(true);
     const input = {
       email: values.email,
       password: values.password,
       username: values.username,
       mobileNo: values.mobileNo,
     };
-    setErrors(validate(values));
-    setIsSubmitting(true);
+
+    try {
+      const { data } = await http.post(apiEndpoint + "signup", input, {
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(data);
+    } catch (error) {
+      if (error.response && error.response.status <= 400) {
+        alert(error.response);
+      }
+    }
+
+    navigate("/adminlogin");
   };
 
   useEffect(() => {

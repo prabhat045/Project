@@ -44,7 +44,7 @@ const FormSignup = ({ submitForm }) => {
           <input
             className='form-input'
             type='text'
-            name='number'
+            name='mobileNo'
             placeholder='Enter your Mobile Number'
             value={values.mobileNo}
             onChange={handleChange}
