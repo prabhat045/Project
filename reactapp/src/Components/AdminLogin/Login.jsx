@@ -34,7 +34,7 @@ function Login(props) {
       }
     }
 
-    navigate("/forgetpassword");
+    // navigate("/forgetpassword");
   };
   return (
     <div class='grid-container'>
@@ -42,7 +42,7 @@ function Login(props) {
       <div class='grid-item2'>
         <div class='admin_login'>
           <form onSubmit={handleSubmit}>
-            <h1>ADMIN LOGIN</h1>Please Sign in to Continue !<br />
+            <h1>LOGIN</h1>Please Sign in to Continue !<br />
             <br />
             <br />
             <div class='admin_login_email'>

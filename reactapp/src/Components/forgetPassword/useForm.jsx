@@ -36,7 +36,7 @@ const useForm = (callback, validate) => {
       }
     }
 
-    // navigate("/adminlogin");
+    navigate("/adminlogin");
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
