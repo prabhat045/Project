@@ -34,9 +34,9 @@ const useForm = (callback, validate) => {
       email: values.email,
       password: values.password,
       username: values.username,
-      mobileNo: values.mobileNo,
+      mobileNumber: values.mobileNo,
     };
-
+    console.log(input);
     try {
       const { data } = await http.post(apiEndpoint + "signup", input, {
         headers: { "Content-Type": "application/json" },
