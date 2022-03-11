@@ -4,7 +4,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import http from "../../Service/httpService";
 const apiEndpoint = "http://localhost:8080/";
-function Items({ cartItems, onQuantityChange, onDelete }) {
+function Items({
+  cartItems,
+
+  onDelete,
+  onClickAdd,
+  incrementquantity,
+  onClickMinus,
+}) {
   return (
     <>
       <div className='items-info'>
@@ -16,13 +23,13 @@ function Items({ cartItems, onQuantityChange, onDelete }) {
         </div>
 
         <div className='add-minus-quantity'>
-          <i className='fas fa-minus minus' onChange={onQuantityChange}></i>
+          <i className='fas fa-minus minus' onClick={onClickMinus}></i>
           <input type='text' value={cartItems.quantity} />
-          <i className='fas fa-plus add'></i>
+          <i className='fas fa-plus add' onClick={onClickAdd}></i>
         </div>
 
         <div className='price'>
-          <h3>{cartItems.price}</h3>
+          <h3>${cartItems.price}</h3>
         </div>
 
         <div className='remove-item'>

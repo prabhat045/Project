@@ -7,10 +7,11 @@ import http from "../../Service/httpService";
 const apiEndpoint = "http://localhost:8080/";
 
 function Cart() {
-  const [incrementquantity, setIncrementquantity] = useState("");
-  const [price, setPrice] = useState("");
+  const [incrementquantity, setIncrementquantity] = useState(1);
+  const [price, setPrice] = useState();
   const [cartItems, setCartItems] = useState([]);
   let navigate = useNavigate();
+
   useEffect(() => {
     async function fetchCart() {
       try {
@@ -27,25 +28,55 @@ function Cart() {
     fetchCart();
   }, []);
 
-  const handlequantity = (event) => {
-    setIncrementquantity(event.target.value);
-  };
-  const handlePrice = (event) => {
-    setPrice(event.target.value);
-  };
-  const handleDelete = async (event) => {
-    event.preventDefault();
+  var total = 0;
 
+  useEffect(() => {
+    cartItems.forEach((e) => {
+      total = total + e.price * e.quantity;
+    });
+    setPrice(total);
+  }, [cartItems]);
+
+  // console.log(total);
+
+  const incrementCounter = (item) => {
+    const items = [...cartItems];
+    const index = items.indexOf(item);
+    items[index].quantity = items[index].quantity + 1;
+    console.log(items[index].quantity);
+    setCartItems(items);
+  };
+  let decrementCounter = (item) => {
+    const items = [...cartItems];
+    const index = items.indexOf(item);
+    if (items[index].quantity > 1)
+      items[index].quantity = items[index].quantity - 1;
+    console.log(items[index].quantity);
+    setCartItems(items);
+  };
+
+  // const handlePrice = (event) => {
+  //   setPrice(event.target.value);
+  // };
+  const handleDelete = async (item) => {
+    console.log("Event", item.id);
+    // event.preventDefault();
     try {
-      const { cartItems } = await http.delete(apiEndpoint + "cartdelete", {
-        headers: { "Content-Type": "application/json" },
-      });
-      // console.log("deletedata", data1);
+      const { data } = await http.delete(
+        apiEndpoint + "cartdelete/" + item.id,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log(data);
     } catch (error) {
       if (error.response && error.response.status <= 400) {
         alert(error.response);
       }
     }
+    const items = cartItems.filter((m) => m.id !== item.id);
+    console.log(items);
+    setCartItems(items);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -63,15 +94,16 @@ function Cart() {
 
         <div className='cart-icon'>
           <img src='./images/cart.png' alt='cart' />
-          <p></p>
+          <p>{cartItems.length}</p>
         </div>
       </header>
 
       <section className='main-cart-section'>
         <h1>shopping Cart</h1>
         <p className='total-items'>
-          you have <span className='total-items-count'> </span> items in
-          shopping cart
+          you have{" "}
+          <span className='total-items-count'> {cartItems.length}</span> items
+          in shopping cart
         </p>
 
         <div className='cart-items'>
@@ -80,10 +112,12 @@ function Cart() {
               <Items
                 cartItems={item}
                 key={item.id}
-                onQuantityChange={handlequantity}
-                onDelete={handleDelete}
-                onPriceChange={handlePrice}
+                onDelete={() => handleDelete(item)}
+                // onPriceChange={handlePrice}
                 onSubmit={handleSubmit}
+                onClickAdd={() => incrementCounter(item)}
+                onClickMinus={() => decrementCounter(item)}
+                incrementquantity={incrementquantity}
               />
             ))}
             ;
@@ -92,7 +126,7 @@ function Cart() {
 
         <div className='card-total'>
           <h3>
-            Cart Total : <span>₹</span>
+            Cart Total : <span>${price}</span>
           </h3>
           <button>checkout</button>
           <button className='clear-cart'>Clear Cart</button>
