@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin()
 @RestController
 public class Signup {
+
     @Autowired
     private UserService userService;
+
     @RequestMapping(value="/signup",method=RequestMethod.POST,consumes="application/json",produces="application/json")
     public ResponseEntity<Object> createUser(@RequestBody User user){
         if(userService.doesUserExists(user))
@@ -19,6 +21,8 @@ public class Signup {
         else
         {
             userService.saveUser(user);
+
+
             return new ResponseEntity<>(true,HttpStatus.OK);
         }
     }

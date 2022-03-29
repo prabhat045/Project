@@ -1,4 +1,4 @@
-package com.examly.springapp.service;
+package main.java.com.examly.springapp.service;
 
 import javax.servlet.http.HttpServletRequest;
 

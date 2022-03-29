@@ -9,7 +9,7 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name="email")
     private String email;
@@ -29,6 +29,18 @@ public class User {
     @Column(name="role")
     private String role;
 
+
+//    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+//    private ShoppingCart shoppingCart;
+//
+//    public ShoppingCart getShoppingCart() {
+//        return shoppingCart;
+//    }
+//
+//    public void setShoppingCart(ShoppingCart shoppingCart) {
+//        this.shoppingCart = shoppingCart;
+//    }
+
     @Column(name="reset_password_token")
     private String resetPasswordToken;
 
@@ -45,7 +57,7 @@ public class User {
 
 
 
-    public void setId(Long id){
+    public void setId(int id){
         this.id = id;
     }
     public void setEmail(String email){
@@ -98,7 +110,7 @@ public class User {
         return this.active;
     }
 
-    public Long getId(){
+    public int getId(){
         return this.id;
     }
 
